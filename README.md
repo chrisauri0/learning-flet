@@ -1,4 +1,4 @@
-# App1Flet app
+# DesktopHorariUteq app
 
 ## Run the app
 
