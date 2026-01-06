@@ -15,7 +15,10 @@ def init_db():
     cursor.executescript("""
     CREATE TABLE IF NOT EXISTS carreras (
         id TEXT PRIMARY KEY,
-        nombre TEXT NOT NULL
+        nombre TEXT NOT NULL,
+        grado INTEGER NOT NULL,
+        division TEXT NOT NULL
+
     );
 
     CREATE TABLE IF NOT EXISTS materias (
@@ -75,4 +78,43 @@ def obtener_materias():
     rows = cursor.fetchall()
     conn.close()
 
+    return rows
+
+
+def insertar_carrera(id, nombre, grado, division):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO carreras VALUES (?, ?, ?, ?)",
+        (id, nombre, grado, division)
+    )
+    conn.commit()
+    conn.close()
+
+
+def actualizar_carrera(id, nombre, grado):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "UPDATE carreras SET nombre=?, grado=? WHERE id=?",
+        (nombre, grado, id)
+    )
+    conn.commit()
+    conn.close()
+
+
+def eliminar_carrera(id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM carreras WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+
+
+def obtener_carreras():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM carreras")
+    rows = cursor.fetchall()
+    conn.close()
     return rows

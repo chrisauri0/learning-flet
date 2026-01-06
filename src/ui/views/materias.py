@@ -80,6 +80,27 @@ def materias_view(page: ft.Page):
     return ft.Column(
         controls=[
             ft.Text("Materias", size=24, weight="bold"),
+
+
+             ft.Row(
+                controls=[
+                    ft.IconButton(
+                        icon=ft.Icons.ARROW_BACK,
+                        tooltip="Volver",
+                        on_click=lambda e: page.go("/")
+                    ),
+                    ft.Column(
+                        spacing=2,
+                        controls=[
+                            ft.Text("Gestión de Materias", size=22, weight="bold"),
+                            ft.Text("Administra las materias y sus detalles",
+                                    color=ft.Colors.GREY_700)
+                        ]
+                    )
+                ]
+            ),
+
+            ft.Divider(),
             nombre,
             horas,
             tipo,

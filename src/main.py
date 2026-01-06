@@ -1,6 +1,7 @@
 import flet as ft
 from ui.home import home_view
-from ui.materias import materias_view
+from ui.views.materias import materias_view
+from ui.views.carreras import carreras_view
 from db import init_db
 
 
